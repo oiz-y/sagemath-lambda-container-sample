@@ -1,0 +1,32 @@
+#!/usr/bin/env sage-python
+
+# Cleverly run Mathematica with the benefit of readline, which
+# is something the usual commercial mathematica doesn't provide!
+# See
+#    http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/363500
+
+import sys
+import signal
+import subprocess
+from sage.cpython.string import str_to_bytes
+
+def child_exited(*args):
+    global child
+    status = child.poll()
+    if status is not None:
+        sys.exit(status)
+
+signal.signal(signal.SIGCHLD, child_exited)
+
+child = subprocess.Popen('math', shell=True, stdin=subprocess.PIPE)
+pipe = child.stdin
+while True:
+    try:
+        line = input()
+        pipe.write(str_to_bytes(line + '\n'))
+        pipe.flush()
+    except KeyboardInterrupt:
+        pipe.close()
+    except EOFError:
+        break
+sys.stdout.write('\n')
