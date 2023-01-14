@@ -1,10 +1,10 @@
-# sagemath-lambda-container-sample
+# sagemath-lambda-container-sample:star:
 
-## Overview
+## Overview:eyes:
 
 This sample code is for running the [sagemath docker image](https://hub.docker.com/r/sagemath/sagemath) with [AWS Lambda](https://aws.amazon.com/lambda/).
 
-## Usage
+## Usage:white_check_mark:
 
 ### Build image
 
@@ -26,10 +26,10 @@ $ docker push ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/sage-demo:latest
 
 Update the ECR repository image referenced by the Lambda function and invoke the Lambda function.
 
-## Reference
+## Reference:book:
 
 - https://www.sagemath.org/
 
-## License
+## License:bell:
 
 - [MIT](https://github.com/quryu-1/sagemath-lambda-container-sample/blob/main/LICENSE)
