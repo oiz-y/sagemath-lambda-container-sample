@@ -28,9 +28,11 @@ Update the ECR repository image referenced by the Lambda function and invoke the
 
 ## App URL:globe_with_meridians:
 
-The following is an example of an application using sagemath docker with AWS Lambda container. But this alone will not tell you anything about the usage of the application or the backend. More details will be available soon.:muscle:
+The following is an example of an application using sagemath docker with AWS Lambda container.
 
 ### https://www.galoisapp.com/
+
+Project link : https://github.com/quryu-1/sage-lambda-container-app
 
 ## Reference:book:
 
