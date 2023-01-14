@@ -26,6 +26,12 @@ $ docker push ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/sage-demo:latest
 
 Update the ECR repository image referenced by the Lambda function and invoke the Lambda function.
 
+## App URL:globe_with_meridians:
+
+The following is an example of an application using sagemath docker with AWS Lambda container. But this alone will not tell you anything about the usage of the application or the backend. More details will be available soon.:muscle:
+
+### https://www.galoisapp.com/
+
 ## Reference:book:
 
 - https://www.sagemath.org/
