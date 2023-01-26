@@ -30,9 +30,9 @@ Update the ECR repository image referenced by the Lambda function and invoke the
 
 The following is an example of an application using sagemath docker with AWS Lambda container.
 
-### https://www.galoisapp.com/
+### https://galoisapp.com/
 
-Project link : https://github.com/quryu-1/sage-lambda-container-app
+Project link : https://github.com/oiz-y/sage-lambda-container-app
 
 ## Reference:book:
 
@@ -41,4 +41,4 @@ Project link : https://github.com/quryu-1/sage-lambda-container-app
 
 ## License:bell:
 
-- [MIT](https://github.com/quryu-1/sagemath-lambda-container-sample/blob/main/LICENSE)
+- [MIT](https://github.com/oiz-y/sagemath-lambda-container-sample/blob/main/LICENSE)
