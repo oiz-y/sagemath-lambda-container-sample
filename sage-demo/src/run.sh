@@ -1,1 +1,3 @@
-sage hello.sage
+set -x
+
+sage --nodotsage hello.sage

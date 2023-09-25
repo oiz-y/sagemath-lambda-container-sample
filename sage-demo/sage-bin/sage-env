@@ -31,7 +31,7 @@
 # absolute path (a relative path remains relative), nor does it treat
 # "." or ".." specially.
 #
-# AUTHOR: Jeroen Demeyer (2011-08-23): Trac tickets #5852 and #11704
+# AUTHOR: Jeroen Demeyer (2011-08-23): Github issues #5852 and #11704
 #
 resolvelinks() {
     # $in is what still needs to be converted (normally has no starting slash)
@@ -278,7 +278,7 @@ if [ "$UNAME" = "Darwin" ]; then
     export MACOSX_VERSION=`uname -r | awk -F. '{print $1}'`
     # Work around problems on recent OS X crashing with an error message
     # "... may have been in progress in another thread when fork() was called"
-    # when objective-C functions are called after fork(). See Trac #25921.
+    # when objective-C functions are called after fork(). See Issue #25921.
     # Most likely, these errors are false positives, so we disable them:
     export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 fi
@@ -305,11 +305,11 @@ if [ -n "$SAGE_LOCAL" ]; then
 fi
 
 if [ -z "$SAGE_REPO_ANONYMOUS" ]; then
-    SAGE_REPO_ANONYMOUS="https://github.com/sagemath/sagetrac-mirror.git"
+    SAGE_REPO_ANONYMOUS="https://github.com/sagemath/sage.git"
     export SAGE_REPO_ANONYMOUS
 fi
 if [ -z "$SAGE_REPO_AUTHENTICATED" ]; then
-        SAGE_REPO_AUTHENTICATED="ssh://git@trac.sagemath.org:2222/sage.git"
+        SAGE_REPO_AUTHENTICATED="https://github.com/sagemath/sage.git"
         export SAGE_REPO_AUTHENTICATED
 fi
 
@@ -355,12 +355,12 @@ if [ "$PYTHON_EGG_CACHE" = "" ]; then
 fi
 
 # Set PYTHONUSERBASE to avoid picking up non-Sage versions of
-# Matplotlib, numpy, etc. See http://trac.sagemath.org/ticket/19612.
+# Matplotlib, numpy, etc. See https://github.com/sagemath/sage/issues/19612.
 #
 # For more history (it used to be PYTHONNOUSERSITE=yes which killed
 # the ability to do "sage -pip install PACKAGE --user"), see
-# http://trac.sagemath.org/ticket/14243 and
-# http://trac.sagemath.org/ticket/18955.
+# https://github.com/sagemath/sage/issues/14243 and
+# https://github.com/sagemath/sage/issues/18955.
 
 if [ "$PYTHONUSERBASE" = "" ]; then
     PYTHONUSERBASE="$DOT_SAGE/local"
@@ -399,12 +399,12 @@ if [ -z "$JUPYTER_CONFIG_DIR" ]; then
 fi
 
 # if [ -z "$MPLCONFIGDIR" ]; then
-    # We hardcode a version number in the directory name. The idea is
-    # that we keep using the same version number as long as that is
-    # possible. Only when some future Matplotlib version really requires
-    # a new structure for the $MPLCONFIGDIR should this version
-    # number be changed to the new matplotlib version.
-    # export MPLCONFIGDIR="$DOT_SAGE/matplotlib-1.5.1"
+#     # We hardcode a version number in the directory name. The idea is
+#     # that we keep using the same version number as long as that is
+#     # possible. Only when some future Matplotlib version really requires
+#     # a new structure for the $MPLCONFIGDIR should this version
+#     # number be changed to the new matplotlib version.
+#     export MPLCONFIGDIR="$DOT_SAGE/matplotlib-1.5.1"
 # fi
 
 # Make sure that a system-wide R installation does not interfere
@@ -422,35 +422,31 @@ if [ -n "$SAGE_LOCAL" -a -d "$SAGE_LOCAL/lib/R/share" ] ; then
        fi
    fi
 fi
-# if [ -d "$DOT_SAGE" ] ; then
-#     if ! [ -d "$DOT_SAGE/R" ] ; then
-#         if ! [ -e  "$DOT_SAGE/R" ] ; then
-#             mkdir -p "$DOT_SAGE/R"
-#         else
-#             >&2 echo "Warning: $DOT_SAGE/R exists and is not a directory : trouble ahead..."
-#         fi
-#     fi
-#     R_MAKEVARS_USER="$DOT_SAGE/R/Makevars.user" && export R_MAKEVARS_USER
-#     if ! [ -f "$R_MAKEVARS_USER" ] ; then
-#         if ! [ -e "$R_MAKEVARS_USER" ] ; then
-#             echo "## Empty user-specific Makevars file for Sage's R" > "$R_MAKEVARS_USER"
-#         else
-#             >&2 echo "Warning: $R_MAKEVARS_USER exists and is not a file : trouble ahead..."
-#         fi
-#     fi
-# fi
-
-
-if [ -n "$SAGE_LOCAL" ]; then
-    export MAXIMA_PREFIX="$SAGE_LOCAL"
+if [ -d "$DOT_SAGE" ] ; then
+    if ! [ -d "$DOT_SAGE/R" ] ; then
+        if ! [ -e  "$DOT_SAGE/R" ] ; then
+            mkdir -p "$DOT_SAGE/R"
+        else
+            >&2 echo "Warning: $DOT_SAGE/R exists and is not a directory : trouble ahead..."
+        fi
+    fi
+    R_MAKEVARS_USER="$DOT_SAGE/R/Makevars.user" && export R_MAKEVARS_USER
+    if ! [ -f "$R_MAKEVARS_USER" ] ; then
+        if ! [ -e "$R_MAKEVARS_USER" ] ; then
+            echo "## Empty user-specific Makevars file for Sage's R" > "$R_MAKEVARS_USER"
+        else
+            >&2 echo "Warning: $R_MAKEVARS_USER exists and is not a file : trouble ahead..."
+        fi
+    fi
 fi
+
 export MAXIMA_USERDIR="$DOT_SAGE/maxima"
 
 if [ -n "$SAGE_LOCAL" ]; then
     PERL5LIB="$SAGE_LOCAL/lib/perl5:$PERL5LIB" && export PERL5LIB
 fi
 
-# Allow SAGE_BROWSER to override BROWSER (Trac #22449)
+# Allow SAGE_BROWSER to override BROWSER (Issue #22449)
 if [ -n "$SAGE_BROWSER" ]; then
     export BROWSER="$SAGE_BROWSER"
 fi
@@ -559,7 +555,7 @@ case "$SAGE_NUM_THREADS,$SAGE_NUM_THREADS_PARALLEL" in
         # sage-num-threads.py would just recompute them
         ;;
     *)
-        # See Trac Ticket #12016
+        # See Issue Ticket #12016
         # First, figure out the right values for SAGE_NUM_THREADS (default
         # number of threads) and SAGE_NUM_THREADS_PARALLEL (default number of
         # threads when parallel execution is asked explicitly).
@@ -593,8 +589,6 @@ if [ "${MAKEFLAGS-__unset__}" != "__unset__" ]; then
 fi
 export MAKE
 
-export PIP_FORMAT="columns"
-
 # Set the cysignals crash logs directory
 if [ -z "$CYSIGNALS_CRASH_LOGS" ]; then
     export CYSIGNALS_CRASH_LOGS="$DOT_SAGE/crash_logs"
@@ -618,7 +612,7 @@ fi
 
 if [ -n "$SAGE_LOCAL" ]; then
     # If we move the Sage tree then ncurses cannot find terminfo, hence, we
-    # tell it where to find it. See Trac Ticket #15091
+    # tell it where to find it. See Issue Ticket #15091
     export TERMINFO="$SAGE_LOCAL/share/terminfo"
 
     # If nodejs is installed, activate the nodeenv containing it.

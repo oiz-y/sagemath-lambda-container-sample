@@ -1,14 +1,16 @@
-FROM sagemath/sagemath
+FROM sagemath/sagemath:10.1
 
+# Lambda container work directory
+WORKDIR /var/task/
 
-WORKDIR /var/task
-
-RUN sudo chown sage:sage /var/task \
- && sudo chmod 777 /home/sage \
- && mkdir /home/sage/.sage \
- && sudo chmod 777 /home/sage/.sage
+# Resolve the error in Lambda container:
+# "/usr/local/bin/sage-entrypoint: line 8: exec: sage: not found"
+RUN sudo chmod -R 777 /home/sage
 
 COPY ./src/* /var/task/
-COPY ./sagebin/* /home/sage/sage/src/bin/
+COPY ./sage-bin/* /home/sage/sage/src/bin/
 
-CMD ["sh", "run.sh"]
+RUN sudo chmod -R 755 /var/task/ \
+ && sudo chmod 777 /home/sage/sage/src/bin/*
+
+CMD ["./run.sh"]
