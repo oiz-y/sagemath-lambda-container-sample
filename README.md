@@ -9,7 +9,7 @@ This sample code is for running the [sagemath docker image](https://hub.docker.c
 ### Build image
 
 ```
-$ git clone https://github.com/quryu-1/sagemath-lambda-container-sample.git
+$ git clone https://github.com/oiz-y/sagemath-lambda-container-sample.git
 $ cd sagemath-lambda-container-sample/sage-demo
 $ docker build -t sage-demo .
 ```
